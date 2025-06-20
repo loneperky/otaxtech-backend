@@ -1,13 +1,15 @@
 import mongoose from "mongoose";
-import express from "express";
 
-const router = express.Router();
-const User = new mongoose.Schema({
+// Define the schema
+const userSchema = new mongoose.Schema({
   fullname: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   message: { type: String, required: true },
+  subject: { type: String }, // Add this if you want to store subject too
   createdAt: { type: Date, default: Date.now },
 });
 
-const UserDB = mongoose.model("UserDB", User);
+// Create the model
+const UserDB = mongoose.model("User", userSchema); // Collection will be `users`
+
 export default UserDB;
